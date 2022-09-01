@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
       textAlign: 'center'
     },
     titulo: {
-      backgroundColor: 'red',
+      backgroundColor: 'darkblue',
       paddingTop: 10,
       color: '#e6e6e6',
       textAlign: 'center',
@@ -15,30 +15,49 @@ export const styles = StyleSheet.create({
       fontSize: 30,
     },
     subtitulo: {
-      backgroundColor: 'red',
+      backgroundColor: 'darkblue',
       color: '#e6e6e6',
       fontWeight: 'bold',
       fontSize: 25,
       textAlign: 'center',
       paddingBottom: 10,
     },
+
+    containerAdicionar: {
+      width: '100%',
+      flexDirection: 'row',
+      marginTop: 18,
+      marginBottom: 18
+    },
     campo: {
-      backgroundColor: '#e6e6e6',
-        marginTop: 16,
+        flex: 1,
+        height: 56,
+        backgroundColor: 'black',
         padding: 16,
         borderRadius: 5,
-        fontSize: 13
+        fontSize: 13,
+        marginRight: 12,
+        borderWidth: 1,
+        borderColor: 'white',
+        color: '#fff'
     },
     botao: {
-      backgroundColor: 'darkgreen',
-        marginTop: 16,
-        padding: 16,
-        borderRadius: 5
+        width: 56,
+        height: 56,
+        backgroundColor: 'green',
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     botaoTexto: {
-      textAlign: 'center',
       color: '#fff',
-      fontWeight: '700',
-      fontSize: 15
+      fontSize: 20
+    },
+
+    listaVazia: {
+      color: '#e6e6e6',
+      textAlign: 'center',
+      fontSize: 16,
+      fontWeight: '600'
     }
   });

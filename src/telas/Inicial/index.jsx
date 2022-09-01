@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, ScrollView, FlatList } from 'react-native';
 import { useState } from 'react';
 import { Conhecimento } from '../../componentes/Conhecimento';
 import { styles } from './estilos'
@@ -10,42 +10,56 @@ export const Inicial = () => {
 
   function adicionarCompetencia() {
     setCompetencias(
-      [...competencias, 
+      [...competencias,
         {
           nome: descricao,
-          nivel: 'penis'
+          nivel: 'Iniciante'
         }
       ]
     )
     setDescricao('')
   }
 
+  function excluirCompetencia(containerAdicionar) {
+    const updateCompetencias = competencias.filter((compcontainerAdicionaretencia) => containerAdicionarcompetencia.nome !== nomeCompetencia)
+    setCompetencias(updateCompetencias)
+  }
+
     return (
       <View style={styles.container}>
+
         <Text style={styles.titulo}>Meus conhecimentos</Text>
         <Text style={styles.subtitulo}>conhecimentos</Text>
 
-        <TextInput 
-          style={styles.campo} 
-          placeholder='Informe a competência' 
-          placeholderTextColor='#121214'
-          onChangeText={setDescricao}
-          value={descricao}
+        <View style={styles.containerAdicionar}>
+          <TextInput
+            style={styles.campo}
+            placeholder='Informe a competência'
+            placeholderTextColor='#e6e6e6'
+            onChangeText={setDescricao}
+            value={descricao}
+          />
+          <TouchableOpacity
+            style={styles.botao}
+            onPress={adicionarCompetencia}
+          >
+            <Text style={styles.botaoTexto}>+</Text>
+          </TouchableOpacity>
+        </View>
+
+        <FlatList
+          data={competencias}
+          keyExtractor={ item => item }
+          renderItem={ ({ item }) => (
+            <Conhecimento key={item.nome} nome={item.nome} nivel={item.nivel} excluir={() => excluirCompetencia(item.nome)}/>
+          )}
+          ListEmptyComponent={ () => (
+            <Text style={styles.listaVazia}>
+              Nenhuma competência armazenada
+            </Text>
+          )}
         />
 
-        <TouchableOpacity 
-          style={styles.botao}
-          onPress={adicionarCompetencia}
-        >
-          <Text style={styles.botaoTexto}>Adicionar</Text>
-        </TouchableOpacity>
-
-        <ScrollView>
-        {
-          competencias.map( ({ nome, nivel }) => <Conhecimento key={nome} nome={nome} nivel={nivel}/> )
-        }
-        </ScrollView>
-        
       </View>
     );
   }
