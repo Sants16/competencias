@@ -20,8 +20,8 @@ export const Inicial = () => {
     setDescricao('')
   }
 
-  function excluirCompetencia(containerAdicionar) {
-    const updateCompetencias = competencias.filter((compcontainerAdicionaretencia) => containerAdicionarcompetencia.nome !== nomeCompetencia)
+  function excluirCompetencia(nomeCompetencia) {
+    const updateCompetencias = competencias.filter((competencia) => competencia.nome !== nomeCompetencia)
     setCompetencias(updateCompetencias)
   }
 
