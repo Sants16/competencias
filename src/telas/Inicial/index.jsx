@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, View, ScrollView, FlatList } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, FlatList } from 'react-native';
 import { useState } from 'react';
 import { Conhecimento } from '../../componentes/Conhecimento';
 import { styles } from './estilos'
