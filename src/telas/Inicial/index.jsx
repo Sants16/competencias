@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, View, FlatList } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, FlatList, Alert } from 'react-native';
 import { useState } from 'react';
 import { Conhecimento } from '../../componentes/Conhecimento';
 import { styles } from './estilos'
@@ -9,20 +9,19 @@ export const Inicial = () => {
   const [competencias, setCompetencias] = useState([])
 
   function adicionarCompetencia() {
+    if(competencias.includes(descricao)){
+        return Alert.alert('A competência já existe', 'Adicione outra!')
+      }
+
     setCompetencias(
-      [...competencias,
-        {
-          nome: descricao,
-          nivel: 'Iniciante'
-        }
-      ]
+      [...competencias, descricao]
     )
     setDescricao('')
   }
 
   function excluirCompetencia(nomeCompetencia) {
-    const updateCompetencias = competencias.filter((competencia) => competencia.nome !== nomeCompetencia)
-    setCompetencias(updateCompetencias)
+    const updatedCompetencias = competencias.filter( ( nome ) => nome !== nomeCompetencia)
+    setCompetencias(updatedCompetencias)
   }
 
     return (
@@ -51,7 +50,11 @@ export const Inicial = () => {
           data={competencias}
           keyExtractor={ item => item }
           renderItem={ ({ item }) => (
-            <Conhecimento key={item.nome} nome={item.nome} nivel={item.nivel} excluir={() => excluirCompetencia(item.nome)}/>
+            <Conhecimento
+              key={item}
+              nome={item}
+              excluir={() => excluirCompetencia(item)}
+            />
           )}
           ListEmptyComponent={ () => (
             <Text style={styles.listaVazia}>
