@@ -3,30 +3,46 @@ import { useState } from 'react';
 import { Conhecimento } from '../../componentes/Conhecimento';
 import { styles } from './estilos'
 
+//uuid
+import 'react-native-get-random-values'
+import { v4 as uuid } from 'uuid'
+
+interface tipoCompetencia { //definindo um tipo de dado proprio
+  codigo : string //campo obrigatorio
+  descricao : string //campo obrigatorio
+  nivel ?: string //campo opcional
+}
+
 export const Inicial = () => {
 
-  const [descricao, setDescricao] = useState('')
-  const [competencias, setCompetencias] = useState([])
+  const [descricao, setDescricao] = useState<string>('') //definindo o tipo do state
+  const [competencias, setCompetencias] = useState<tipoCompetencia[]>([])
 
   function adicionarCompetencia() {
-    if(competencias.includes(descricao.trim())){
-        return Alert.alert('A competência já existe', 'Adicione outra!')
-      }
+    const novaCompetencia : tipoCompetencia = {
+      codigo: String( uuid() ),
+      descricao: descricao
+    }
+
+    // if(descricao.trim() === '' || competencias.includes(descricao.trim())){
+    //     return Alert.alert('A competência já existe', 'Adicione outra!')
+    //   }
 
     setCompetencias(
-      [...competencias, descricao]
+      [...competencias, novaCompetencia]
     )
     setDescricao('')
+    console.log(novaCompetencia)
   }
 
-  function excluirCompetencia(nomeCompetencia) {
+  function excluirCompetencia(competencia : tipoCompetencia) {
     Alert.alert('Excluir', 'Confirmar exclusão?', [
       {
         text: 'Sim',
         onPress: () => {
           const updatedCompetencias = competencias.filter( 
-              ( nome ) => nome !== nomeCompetencia
-            )
+              ( competenciaArmazenada ) => competenciaArmazenada.descricao !== competencia.descricao
+          )
           setCompetencias(updatedCompetencias)
         }
       },
@@ -60,11 +76,11 @@ export const Inicial = () => {
 
         <FlatList
           data={competencias}
-          keyExtractor={ item => item }
+          keyExtractor={ item => item.codigo }
           renderItem={ ({ item }) => (
             <Conhecimento
-              key={item}
-              nome={item}
+              key={item.codigo}
+              nome={item.descricao}
               excluir={() => excluirCompetencia(item)}
             />
           )}
