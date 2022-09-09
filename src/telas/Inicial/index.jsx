@@ -9,7 +9,7 @@ export const Inicial = () => {
   const [competencias, setCompetencias] = useState([])
 
   function adicionarCompetencia() {
-    if(competencias.includes(descricao)){
+    if(competencias.includes(descricao.trim())){
         return Alert.alert('A competência já existe', 'Adicione outra!')
       }
 
@@ -20,8 +20,20 @@ export const Inicial = () => {
   }
 
   function excluirCompetencia(nomeCompetencia) {
-    const updatedCompetencias = competencias.filter( ( nome ) => nome !== nomeCompetencia)
-    setCompetencias(updatedCompetencias)
+    Alert.alert('Excluir', 'Confirmar exclusão?', [
+      {
+        text: 'Sim',
+        onPress: () => {
+          const updatedCompetencias = competencias.filter( 
+              ( nome ) => nome !== nomeCompetencia
+            )
+          setCompetencias(updatedCompetencias)
+        }
+      },
+      {
+        text: 'Não'
+      }
+    ])
   }
 
     return (
