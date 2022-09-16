@@ -21,12 +21,17 @@ export const Inicial = () => {
   function adicionarCompetencia() {
     const novaCompetencia : tipoCompetencia = {
       codigo: String( uuid() ),
-      descricao: descricao
+      descricao: descricao.trim() //tira os espaços
     }
 
-    // if(descricao.trim() === '' || competencias.includes(descricao.trim())){
-    //     return Alert.alert('A competência já existe', 'Adicione outra!')
-    //   }
+    if( descricao.trim() === '' || typeof(
+      competencias.find( //procura uma competencia que tenha a descrição igual a da novaCompetencia adicionada
+        ({ descricao }) => descricao === novaCompetencia.descricao
+      )
+    ) === 'object' ){
+      setDescricao('')
+      return Alert.alert('A competência já existe', 'Adicione outra!')
+    }
 
     setCompetencias(
       [...competencias, novaCompetencia]
@@ -41,7 +46,7 @@ export const Inicial = () => {
         text: 'Sim',
         onPress: () => {
           const updatedCompetencias = competencias.filter( 
-              ( competenciaArmazenada ) => competenciaArmazenada.descricao !== competencia.descricao
+            ({ descricao }) => descricao !== competencia.descricao
           )
           setCompetencias(updatedCompetencias)
         }
