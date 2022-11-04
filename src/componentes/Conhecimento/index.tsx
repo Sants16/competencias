@@ -1,16 +1,15 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import { styles } from './estilos'
+import * as S from './estilos'
 
 export const Conhecimento = ({ nome, excluir }) => {
     return(
-        <View style={styles.container}>
+        <S.Container>
 
-            <Text style={styles.descricao}> { nome.toUpperCase() } </Text>
+            <S.Descricao> { nome.toUpperCase() } </S.Descricao>
 
-            <TouchableOpacity style={styles.botao} onPress={excluir}>
-                <Text style={styles.botaoTexto}>-</Text>
-            </TouchableOpacity>
+            <S.Botao onPress={excluir}>
+                <S.Icone/>
+            </S.Botao>
 
-        </View>
+        </S.Container>
     )
 }

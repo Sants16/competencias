@@ -1,7 +1,7 @@
-import { Text, TextInput, TouchableOpacity, View, FlatList, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import { useState } from 'react';
 import { Conhecimento } from '../../componentes/Conhecimento';
-import { styles } from './estilos'
+import * as S from './estilos'
 
 //uuid
 import 'react-native-get-random-values'
@@ -30,7 +30,7 @@ export const Inicial = () => {
       )
     ) === 'object' ){
       setDescricao('')
-      return Alert.alert('A competência já existe', 'Adicione outra!')
+      return Alert.alert('A competência já existe', 'envie outra')
     }
 
     setCompetencias(
@@ -58,28 +58,24 @@ export const Inicial = () => {
   }
 
     return (
-      <View style={styles.container}>
+      <S.Container>
 
-        <Text style={styles.titulo}>Meus conhecimentos</Text>
-        <Text style={styles.subtitulo}>conhecimentos</Text>
+        <S.Titulo>Meus</S.Titulo>
+        <S.Subtitulo>conhecimentos</S.Subtitulo>
 
-        <View style={styles.containerAdicionar}>
-          <TextInput
-            style={styles.campo}
-            placeholder='Informe a competência'
-            placeholderTextColor='#e6e6e6'
+        <S.ContainerAdicionar>
+          <S.Campo
             onChangeText={setDescricao}
             value={descricao}
           />
-          <TouchableOpacity
-            style={styles.botao}
+          <S.Botao
             onPress={adicionarCompetencia}
           >
-            <Text style={styles.botaoTexto}>+</Text>
-          </TouchableOpacity>
-        </View>
+            <S.Icone/>
+          </S.Botao>
+        </S.ContainerAdicionar>
 
-        <FlatList
+        <S.Lista
           data={competencias}
           keyExtractor={ item => item.codigo }
           renderItem={ ({ item }) => (
@@ -90,12 +86,12 @@ export const Inicial = () => {
             />
           )}
           ListEmptyComponent={ () => (
-            <Text style={styles.listaVazia}>
+            <S.ListaVazia>
               Nenhuma competência armazenada
-            </Text>
+            </S.ListaVazia>
           )}
         />
 
-      </View>
+      </S.Container>
     );
   }

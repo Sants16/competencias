@@ -1,63 +1,79 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
+import { FontAwesome } from '@expo/vector-icons'; 
 
-export const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#333',
-      textAlign: 'center'
-    },
-    titulo: {
-      backgroundColor: 'darkblue',
-      paddingTop: 10,
-      color: '#e6e6e6',
-      textAlign: 'center',
-      fontWeight: '900',
-      fontSize: 30,
-    },
-    subtitulo: {
-      backgroundColor: 'darkblue',
-      color: '#e6e6e6',
-      fontWeight: 'bold',
-      fontSize: 25,
-      textAlign: 'center',
-      paddingBottom: 10,
-    },
+export const Container = styled.View`
+  flex: 1;
+  background-color: #333;
+  text-align: center;
+`
 
-    containerAdicionar: {
-      width: '100%',
-      flexDirection: 'row',
-      marginTop: 18,
-      marginBottom: 18
-    },
-    campo: {
-        flex: 1,
-        height: 56,
-        backgroundColor: 'black',
-        padding: 16,
-        borderRadius: 5,
-        fontSize: 13,
-        marginRight: 12,
-        borderWidth: 1,
-        borderColor: 'white',
-        color: '#fff'
-    },
-    botao: {
-        width: 56,
-        height: 56,
-        backgroundColor: 'green',
-        borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    botaoTexto: {
-      color: '#fff',
-      fontSize: 20
-    },
+export const Titulo = styled.Text`
+  background-color: purple;
+  padding-top: 10px;
+  color: #e6e6e6;
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+`
 
-    listaVazia: {
-      color: '#e6e6e6',
-      textAlign: 'center',
-      fontSize: 16,
-      fontWeight: '600'
-    }
-  });
+export const Subtitulo = styled.Text`
+  background-color: purple;
+  color: #e6e6e6;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  padding-bottom: 10px;
+`
+
+export const ContainerAdicionar = styled.View`
+  width: 100%;
+  flex-direction: row;
+  margin-top: 18px;
+  margin-bottom: 18px;
+`
+
+export const Campo = styled.TextInput.attrs({
+  placeholder: 'Informe a competência',
+  placeholderTextColor: '#e6e6e6',
+})`
+  flex: 1;
+  height: 56px;
+  background-color: black;
+  padding: 16px;
+  border-radius: 5px;
+  font-size: 13px;
+  margin-right: 12px;
+  border-width: 1px;
+  border-color: white;
+  color: #fff;
+`
+
+export const Botao = styled.TouchableOpacity`
+  width: 56px;
+  height: 56px;
+  background-color: green;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+`
+
+export const BotaoTexto = styled.Text`
+  color: #fff;
+  font-size: 20px;
+`
+
+export const Lista = styled.FlatList``
+
+export const ListaVazia = styled.Text`
+  color: #e6e6e6;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+`
+
+export const Icone = styled(FontAwesome).attrs({
+  name: 'check'
+})`
+  font-size: 20px;
+  color: #e6e6e6;
+`
