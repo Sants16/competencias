@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Select } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons'; 
 
 export const Container = styled.View`
@@ -30,18 +31,21 @@ export const ContainerAdicionar = styled.View`
   flex-direction: row;
   margin-top: 18px;
   margin-bottom: 18px;
+  margin-left: 12px;
+  margin-right: 12px;
 `
 
 export const Campo = styled.TextInput.attrs({
   placeholder: 'Informe a competência',
   placeholderTextColor: '#e6e6e6',
 })`
-  flex: 1;
   height: 56px;
   background-color: black;
   padding: 16px;
   border-radius: 5px;
-  font-size: 13px;
+  font-size: 14px;
+  margin-top: 12px;
+  margin-left: 12px;
   margin-right: 12px;
   border-width: 1px;
   border-color: white;
@@ -51,6 +55,7 @@ export const Campo = styled.TextInput.attrs({
 export const Botao = styled.TouchableOpacity`
   width: 56px;
   height: 56px;
+  margin-left: 10px;
   background-color: green;
   border-radius: 5px;
   align-items: center;
@@ -77,3 +82,16 @@ export const Icone = styled(FontAwesome).attrs({
   font-size: 20px;
   color: #e6e6e6;
 `
+
+export const Nivel = styled(Select).attrs({
+  flex: 0.92,
+  height: '56px',
+  fontSize: '14px',
+  color: '#fff',
+  backgroundColor: '#000',
+  borderColor: '#fff',
+  borderWidth: '1px',
+  placeholder: 'Informe o seu nível',
+  placeholderTextColor: '#e6e6e6',
+  _selectedItem: { backgroundColor: '#88007d9e' }
+})``

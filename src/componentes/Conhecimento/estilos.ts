@@ -8,29 +8,36 @@ export const Container = styled.View`
   margin-bottom: 18px;
 `
 
-export const Descricao = styled.Text`
+export const ContainerCompetencia = styled.View`
   flex: 1;
-  height: 56px;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 20px;
+  border-radius: 20px;
   background-color: #121214;
-  padding: 16px;
-  border-radius: 5px;
+`
+
+export const Descricao = styled.Text`
+  margin-bottom: 10px;
   font-size: 13px;
-  margin-right: 12px;
   color: #fff;
 `
 
+export const Nivel = styled.Text`
+  font-size: 15px;
+  color: #fff;
+  font-weight: bold;
+`
+
 export const Botao = styled.TouchableOpacity`
+  align-self: flex-end;
   width: 56px;
   height: 56px;
   background-color: red;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
-`
-
-export const BotaoTexto = styled.Text`  
-  color: #fff;
-  font-size: 20px;
 `
 
 export const Icone = styled(FontAwesome).attrs({

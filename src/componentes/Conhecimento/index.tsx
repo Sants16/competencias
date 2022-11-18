@@ -1,14 +1,17 @@
 import * as S from './estilos'
 
-export const Conhecimento = ({ nome, excluir }) => {
+export const Conhecimento = ({ nome, nivel, excluir }) => {
     return(
         <S.Container>
 
-            <S.Descricao> { nome.toUpperCase() } </S.Descricao>
+            <S.ContainerCompetencia>
+                <S.Descricao> { nome } </S.Descricao>
+                <S.Nivel> { nivel } </S.Nivel>
 
-            <S.Botao onPress={excluir}>
-                <S.Icone/>
-            </S.Botao>
+                <S.Botao onPress={excluir}>
+                    <S.Icone/>
+                </S.Botao>
+            </S.ContainerCompetencia>
 
         </S.Container>
     )

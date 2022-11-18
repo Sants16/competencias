@@ -8,20 +8,22 @@ import 'react-native-get-random-values'
 import { v4 as uuid } from 'uuid'
 
 interface tipoCompetencia { //definindo um tipo de dado proprio
-  codigo : string //campo obrigatorio
-  descricao : string //campo obrigatorio
-  nivel ?: string //campo opcional
+  codigo: string //campo obrigatorio
+  descricao: string //campo obrigatorio
+  nivel: string //campo opcional
 }
 
 export const Inicial = () => {
 
   const [descricao, setDescricao] = useState<string>('') //definindo o tipo do state
   const [competencias, setCompetencias] = useState<tipoCompetencia[]>([])
+  const [nivel, setNivel] = useState<string>('')
 
   function adicionarCompetencia() {
     const novaCompetencia : tipoCompetencia = {
       codigo: String( uuid() ),
-      descricao: descricao.trim() //tira os espaços
+      descricao: descricao.trim(), //tira os espaços
+      nivel
     }
 
     if( descricao.trim() === '' || typeof(
@@ -63,11 +65,21 @@ export const Inicial = () => {
         <S.Titulo>Meus</S.Titulo>
         <S.Subtitulo>conhecimentos</S.Subtitulo>
 
-        <S.ContainerAdicionar>
-          <S.Campo
+        <S.Campo
             onChangeText={setDescricao}
             value={descricao}
-          />
+        />
+
+        <S.ContainerAdicionar>
+          <S.Nivel
+            SelectedValue={nivel}
+            onValueChange={itemValue => setNivel(itemValue)}
+          >
+            <S.Nivel.Item label='Básico' value='BÁSICO'/>
+            <S.Nivel.Item label='Intermediário' value='INTERMEDIÁRIO'/>
+            <S.Nivel.Item label='Avançado' value='AVANÇADO'/>
+          </S.Nivel>
+
           <S.Botao
             onPress={adicionarCompetencia}
           >
@@ -82,6 +94,7 @@ export const Inicial = () => {
             <Conhecimento
               key={item.codigo}
               nome={item.descricao}
+              nivel={item.nivel}
               excluir={() => excluirCompetencia(item)}
             />
           )}
